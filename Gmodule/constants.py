@@ -24,4 +24,4 @@ class constants:
     subvect=[]
 
     ##### Widgets controlling
-    Gwidgets = 1
+    Gwidgets = []
