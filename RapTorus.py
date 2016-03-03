@@ -17,6 +17,7 @@ print('stl surface elements: ',len(model))
 ##assign geometry
 cons.vect=model
 cons.cmass_xyz=cmass
+cons.Gwidgets.append('geometry')
 print('model assigned to constants')
 
 ## Initialize
