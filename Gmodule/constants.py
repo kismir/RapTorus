@@ -1,4 +1,4 @@
-#constants and variables
+#constants and variables < -- this part must be reorganizd greatly
 class constants:
 
     ##### Visualization
@@ -25,3 +25,5 @@ class constants:
 
     ##### Widgets controlling
     Gwidgets = []
+
+    ##### Mechanical
