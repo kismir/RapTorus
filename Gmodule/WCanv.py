@@ -1,6 +1,7 @@
+## Here comes main graphical displays to output
 import tkinter as tk
 from math import floor
-import Gmodule.QMM as qm
+import QMM as qm
 
 def SortV(vect):
     zvlist=[]
@@ -17,11 +18,11 @@ def SortV(vect):
         
 
 class G3Dcnv:
-    def __init__(self,cons,root):
+    def __init__(self,cons,master):
         light=qm.normalize(cons.light) # vector of light direction
         width,height=cons.wsize
         
-        self.canvas = tk.Canvas(root,
+        self.canvas = tk.Canvas(master,
         width = cons.wsize[0],
         height = cons.wsize[1],
         bg = '#FFF')
@@ -84,8 +85,9 @@ class G3Dcnv:
             #draw(canvas)
 
         def new_base_vec(event):
-            cons.vect=cons.subvect
-            cons.angl=0
+            if cons.subvect!=[]:
+                cons.vect=cons.subvect
+                cons.angl=0
             #draw(canvas)
 
         def do_rot_motion(event): # changing direction vector based on the position where cursor is
@@ -134,34 +136,6 @@ class G3Dcnv:
         canvas.focus_set()
         #canvas.pack()
 
-def modifyWL(widlist): # names from widget list to classes
-    toplabelsToRun=[]
-    for wid in widlist:
-        if wid=='geometry': toplabelsToRun.append(G3Dcnv)
-
-    return toplabelsToRun
-        
-class PrintConsole:
-    def __init__(self,master):
-            self.console=tk.Text(master,width = 80,height = 40)
-            self.console.insert('1.0','RapTorus v1.16.0225 ; (console output)')
-            self.console.pack()
-
-class MFrame:
-    def __init__(self,cons):
-        self.root = tk.Tk()
-        console=PrintConsole(self.root).console
-        TLlist=modifyWL(cons.Gwidgets)
-        self.toplist=[]
-        for TL in TLlist:
-            self.toplist.append(tk.Toplevel(self.root))
-        self.widgets=[]
-        for tlw in self.toplist:
-            self.widgets.append(TL(cons,tlw))
-        for wdgt in self.widgets:
-            wdgt.canvas.pack()
-        print(self.toplist,self.widgets)
-        self.root.mainloop()
 
 
     
