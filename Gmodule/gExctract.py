@@ -33,7 +33,7 @@ def eSTL(path):
             t.append(f)
         vect.append(t)
 
-    ######cmass
+    ######cmass of vertices <---- (change to real cmass)
     xvert=[]
     yvert=[]
     zvert=[]
