@@ -20,7 +20,6 @@ path='D:/tre.stl'
 model,cmass=gExtract.eSTL(path) # model=[[normal,vecn1,vecn2,vecn3],... ](triangles); cmass = (x,y,z)
 print('stl surface elements: ',len(model))
 
-
 ##assign geometry
 cons.vect=model
 cons.cmass_xyz=cmass
