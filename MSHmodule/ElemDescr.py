@@ -8,11 +8,9 @@ class vertex:
 
 class edge:
     number=None
-    vertexTail=None # Here comes class vertex
-    vertexHead=None # Here comes class vertex
+    vertexList=[] # Here comes list of class vertex
 
 class element:
     number=None
-    edgeList=[]
-
+    vertexList=[]
     
