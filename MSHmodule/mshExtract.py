@@ -1,4 +1,5 @@
 from ElemDescr import *
+from collections import Counter
 
 def is_number(s):
     try:
@@ -40,19 +41,8 @@ def findObjectByNum(theList,number):
     obj=next((x for x in theList if x.number == number), None)
     return obj
 
-def edgeAss(verts,elements):
-    edges=[]
-    g=0
-    for i,el in enumerate(elements):
-        for j,item in enumerate(el[11:-1]):
-            g=g+1
-            ed=edge()
-            ed.number=g
-            ed.edgeList=[]
-            vertexOBJ=findObjectByNum(verts,item)
-            e.vertexList.append(vertexOBJ)
-        edges.append(e)
-    return edges
+def sameLists(s, t):
+    return Counter(s) == Counter(t)
 
 def elAss(verts,elements):
     els=[]
@@ -60,17 +50,54 @@ def elAss(verts,elements):
         e=element()
         e.number=el[10]
         e.vertexList=[]
+        #my_dict = {i:el[11:].count(i) for i in el[11:]}
+        #print(len(my_dict ))
         for item in el[11:]:
             vertexOBJ=findObjectByNum(verts,item)
             e.vertexList.append(vertexOBJ)
+        e.facesList=[sorted([el[11+0],el[11+1],el[11+2],el[11+3]]),
+                             sorted([el[11+4],el[11+5],el[11+6],el[11+7]]),
+                             sorted([el[11+0],el[11+1],el[11+5],el[11+4]]),
+                             sorted([el[11+1],el[11+2],el[11+6],el[11+5]]),
+                             sorted([el[11+2],el[11+3],el[11+7],el[11+6]]),
+                             sorted([el[11+3],el[11+0],el[11+4],el[11+7]])] #creating faces set
         els.append(e)
+        print(len(els))
     return els
+
+def outerFaces(elements): # define outer faces
+    faces=[]
+    for el in elements:
+        for face in el.facesList:
+            faces.append(face)
+    print(len(faces))
+    flist=[]
+    faceslen=len(faces)
+    for i in range(faceslen):
+        face=faces[0]
+
+        print(len(faces))
+        Removeind=[]
+        faces=faces[1:]
+        strtl=len(faces)
+        try:
+            faces.remove(face)
+        except:
+            pass
+        if strtl==len(faces):
+            flist.append(face)
+
+            
+
+    return flist        
 
 path='D:/el_ex.txt'
 vertices,elements=mshAN(path)
 verts=vAss(vertices)
 elements=elAss(verts,elements)
-for i in range(1,20):
+for i in range(50,70):
     a=findObjectByNum(elements,i)
-    print(a.vertexList)
+fl=outerFaces(elements)
+print(fl)
+    #print(a.vertexList)
 
