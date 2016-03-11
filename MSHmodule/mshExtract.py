@@ -1,5 +1,7 @@
 from ElemDescr import *
 from collections import Counter
+import itertools
+
 
 def is_number(s):
     try:
@@ -55,49 +57,83 @@ def elAss(verts,elements):
         for item in el[11:]:
             vertexOBJ=findObjectByNum(verts,item)
             e.vertexList.append(vertexOBJ)
-        e.facesList=[sorted([el[11+0],el[11+1],el[11+2],el[11+3]]),
-                             sorted([el[11+4],el[11+5],el[11+6],el[11+7]]),
-                             sorted([el[11+0],el[11+1],el[11+5],el[11+4]]),
-                             sorted([el[11+1],el[11+2],el[11+6],el[11+5]]),
-                             sorted([el[11+2],el[11+3],el[11+7],el[11+6]]),
-                             sorted([el[11+3],el[11+0],el[11+4],el[11+7]])] #creating faces set
+        e.facesList=[(el[11+0],el[11+1],el[11+2],el[11+3]),
+                    (el[11+4],el[11+5],el[11+6],el[11+7]),
+                    (el[11+0],el[11+1],el[11+5],el[11+4]),
+                    (el[11+1],el[11+2],el[11+6],el[11+5]),
+                    (el[11+2],el[11+3],el[11+7],el[11+6]),
+                    (el[11+3],el[11+0],el[11+4],el[11+7])] #creating faces set
         els.append(e)
-        print(len(els))
+        #print(len(els))
     return els
 
-def outerFaces(elements): # define outer faces
+def cross(a, b): # cross vector multiplication
+    c = [a[1]*b[2] - a[2]*b[1],
+         a[2]*b[0] - a[0]*b[2],
+         a[0]*b[1] - a[1]*b[0]]
+    return c
+
+def outerFaces(vertices,elements): # define outer faces
     faces=[]
     for el in elements:
         for face in el.facesList:
             faces.append(face)
-    print(len(faces))
     flist=[]
     faceslen=len(faces)
     for i in range(faceslen):
-        face=faces[0]
+        if len(faces)>0:
+            face=faces[0]
+            faces=faces[1:]
+            strtl=len(faces)
+            allFacePermutations=list(itertools.permutations(face))
+            #print(allFacePermutations)
+            for prmf in allFacePermutations:
+                try:
+                    faces.remove(prmf)
+                except:
+                    pass
+            if strtl==len(faces):
+                flist.append(face)
 
-        print(len(faces))
-        Removeind=[]
-        faces=faces[1:]
-        strtl=len(faces)
-        try:
-            faces.remove(face)
-        except:
-            pass
-        if strtl==len(faces):
-            flist.append(face)
+            ## FLIST -list of (list of vertices numbers of outer faces)
+            ## forming vector with normals
+    vect=[]
+    for f in flist:
+        v=[]
+        for nodeN in f: 
+            nodeObj=findObjectByNum(vertices,nodeN)
+            vec=[nodeObj.x,nodeObj.y,nodeObj.z]
+            v.append(vec)
+        normal=cross(v[0],v[1])
+        sumUP=[normal]
+        for i in v:
+            sumUP.append(i)
+        vect.append(sumUP)
 
+    print(len(vect))
             
+    return vect        
 
-    return flist        
+def mExt(path):
+    verticesV,elemG=mshAN(path)
+    vertsC=vAss(verticesV)
+    elementsC=elAss(vertsC,elemG)
+    vect=outerFaces(vertsC,elementsC)
 
-path='D:/el_ex.txt'
-vertices,elements=mshAN(path)
-verts=vAss(vertices)
-elements=elAss(verts,elements)
-for i in range(50,70):
-    a=findObjectByNum(elements,i)
-fl=outerFaces(elements)
-print(fl)
-    #print(a.vertexList)
+    ## define center of mass << ----- change this
+    xvert=[]
+    yvert=[]
+    zvert=[]
+    for v in vect:
+        xvert.append((v[1][0]+v[2][0]+v[3][0])/3.0)
+        yvert.append((v[1][1]+v[2][1]+v[3][1])/3.0)
+        zvert.append((v[1][2]+v[2][2]+v[3][2])/3.0)
+    x=sum(xvert)/len(xvert)
+    y=sum(yvert)/len(yvert)
+    z=sum(zvert)/len(zvert)
+    cmass=(x,y,z)
+
+    return vect,cmass
+
+
 

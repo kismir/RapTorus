@@ -27,11 +27,11 @@ cons.Gwidgets.append('geometry')
 print('model assigned to constants')
 
 ## open mesh file
-print('exctracting geometry from file')
-path='D:/el_ex.txt'
-mesh=mshExtract.mshAN(path)  #mshCmass
+#print('exctracting geometry from file')
+#path='D:/el_ex.txt'
+#model,cmass=mshExtract.mExt(path)
+#print('stl surface elements: ',len(model))
 
-print('stl surface elements: ',len(mesh))
 
 ## Initialize Main Frame with specific constants
 MFrame(cons)
