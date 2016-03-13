@@ -1,10 +1,12 @@
 import tkinter as tk
 from WCanv import G3Dcnv
+from MCanv import M3Dcnv
 
 def modifyWL(widlist): # names from widget list ---> to classes without initializing ()
     toplabelsToRun=[]
     for wid in widlist:
         if wid=='geometry': toplabelsToRun.append(G3Dcnv)
+        if wid=='mesh': toplabelsToRun.append(M3Dcnv)
 
     return toplabelsToRun
         
@@ -30,3 +32,6 @@ class MFrame:
         for wdgt in self.widgets:
             wdgt.canvas.pack()
         self.root.mainloop()
+
+        #move constants to main frame and push model and cmass and so on there/
+        #also hide initialization of cons to exporting module
