@@ -50,6 +50,6 @@ def eSTL(path):
     
     cons=constants()
     cons.vect=vect
-    cons.cmass=cmass
+    cons.cmass_xyz=cmass
     
     return cons
