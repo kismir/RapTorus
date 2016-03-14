@@ -1,3 +1,5 @@
+from constants import constants
+
 def eSTL(path):
     f=open(path,'r')
     h=f.readlines()
@@ -45,4 +47,9 @@ def eSTL(path):
     y=sum(yvert)/len(yvert)
     z=sum(zvert)/len(zvert)
     cmass=(x,y,z)
-    return vect,cmass
+    
+    cons=constants()
+    cons.vect=vect
+    cons.cmass=cmass
+    
+    return cons
