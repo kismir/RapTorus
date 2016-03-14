@@ -10,10 +10,6 @@ import mshExtract
 from MainFrame import MFrame
 from constants import constants
 
-#initializing vizulization constants for model and also variables space
-cons=constants()
-print('constants initialized')
-
 ## open stl file
 print('exctracting geometry from file')
 path='D:/tre.stl'
