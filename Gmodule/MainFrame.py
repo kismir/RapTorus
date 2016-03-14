@@ -17,18 +17,20 @@ class PrintConsole:
             self.console.pack()
 
 class MFrame:
-    def __init__(self,cons):
+    def __init__(self,c):
         self.root = tk.Tk()
         self.root.wm_title("RapTorus")
         #self.root.withdraw() # hiding main window <--------------(open it when more base func is added)
         console=PrintConsole(self.root).console
-        tLTR=modifyWL(cons.Gwidgets) 
         self.toplist=[]
-        for TL in tLTR:
-            self.toplist.append(tk.Toplevel(self.root))
         self.widgets=[]
-        for tlw in self.toplist:
-            self.widgets.append(TL(cons,tlw))
+        for cons in c:
+            tLTR=modifyWL(cons.Gwidgets) 
+            for TL in tLTR:
+                self.toplist.append(tk.Toplevel(self.root))
+            for tlw in self.toplist:
+                self.widgets.append(TL(cons,tlw))
+        
         for wdgt in self.widgets:
             wdgt.canvas.pack()
         self.root.mainloop()
