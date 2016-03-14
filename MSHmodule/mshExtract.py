@@ -132,8 +132,13 @@ def mExt(path):
     y=sum(yvert)/len(yvert)
     z=sum(zvert)/len(zvert)
     cmass=(x,y,z)
+    
+    cons=constants()
+    print('constants successfully initialized')
+    cons.vect=vect
+    cons.cmass_xyz=cmass
 
-    return vect,cmass
+    return cons
 
 
 
