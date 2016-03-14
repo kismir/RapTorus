@@ -22,14 +22,14 @@ class MFrame:
         self.root.wm_title("RapTorus")
         #self.root.withdraw() # hiding main window <--------------(open it when more base func is added)
         console=PrintConsole(self.root).console
-        self.toplist=[]
         self.widgets=[]
-        for cons in c:
-            tLTR=modifyWL(cons.Gwidgets) 
-            for TL in tLTR:
+        for const in c:
+            WclassList=modifyWL(const.Gwidgets)
+            self.toplist=[]
+            for WcL in WclassList:
                 self.toplist.append(tk.Toplevel(self.root))
             for tlw in self.toplist:
-                self.widgets.append(TL(cons,tlw))
+                self.widgets.append(WcL(const,tlw))
         
         for wdgt in self.widgets:
             wdgt.canvas.pack()

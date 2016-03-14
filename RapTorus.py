@@ -14,17 +14,18 @@ from constants import constants
 print('exctracting geometry from file')
 path='D:/tre.stl'
 cons=gExtract.eSTL(path) # model=[[normal,vecn1,vecn2,vecn3],... ](triangles); cmass = (x,y,z)
-print('stl surface elements: ',len(model))
+print('stl surface elements: ',len(cons.vect))
 ##assign geometry
 cons.Gwidgets.append('geometry')
 print('model assigned to constants')
+
 
 ## open mesh file
 print('exctracting geometry from file')
 path='D:/el_ex.txt'
 cons1=mshExtract.mExt(path)
 cons1.Gwidgets.append('mesh')
-print('stl surface elements: ',len(mesh))
+print('stl surface elements: ',len(cons1.vect))
 
 c=[cons,cons1]
 ## Initialize Main Frame with specific constants

@@ -1,6 +1,7 @@
 from ElemDescr import *
 from collections import Counter
 import itertools
+from constants import constants
 
 
 def is_number(s):
@@ -104,7 +105,7 @@ def outerFaces(vertices,elements): # define outer faces
             nodeObj=findObjectByNum(vertices,nodeN)
             vec=[nodeObj.x,nodeObj.y,nodeObj.z]
             v.append(vec)
-        normal=cross(v[0],v[1])
+        normal=cross(v[1],v[0])
         sumUP=[normal]
         for i in v:
             sumUP.append(i)

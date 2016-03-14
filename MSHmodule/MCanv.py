@@ -71,10 +71,9 @@ class M3Dcnv:
                         Fvect.append(zet[0]+cons.cur_position_xy[0])
                         Fvect.append(zet[1]+cons.cur_position_xy[1])
                     canvas.create_polygon(Fvect, fill=tk_rgb, outline='black')
-                venew=[]
+                venew=[n_vec]
                 for v in vec_n:
                     venew.append((v[0]+cmass_x/csf,v[1]+cmass_y/csf,v[2]+cmass_z/csf))
-                venew=n_vec+venew
                 cons.subvect.append(venew)
 
         def draw_loading(canvas):

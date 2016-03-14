@@ -1,29 +1,30 @@
 #constants and variables < -- this part must be reorganizd greatly
 class constants:
+    def __init__(self):
 
-    ##### Visualization
-    wsize=(800,600)
-    
-    light=(-1,-1,100)
-    #direct=(0,0,1)
-    c=100,100
-    scale_factor=10
-    cmass_xyz=(150,80,100)
+        ##### Visualization
+        self.wsize=(800,600)
+        
+        self.light=(-1,-1,100)
+        #direct=(0,0,1)
+        self.c=100,100
+        self.scale_factor=3.5
+        self.cmass_xyz=(150,80,100)
 
-    rot_factor=100 # this is z component of ruling vector
-    base_vec=(0,0,1)
-    start_rot=(0,0)
-    rot_axis=(1,0,0)
-    angl=0
+        self.rot_factor=100 # this is z component of ruling vector
+        self.base_vec=(0,0,1)
+        self.start_rot=(0,0)
+        self.rot_axis=(1,0,0)
+        self.angl=0
 
-    position_xy=(wsize[0]/2,wsize[1]/2)
-    cur_position_xy=position_xy
-    cursor_start_xy=(0,0)
+        self.position_xy=(self.wsize[0]/2,self.wsize[1]/2)
+        self.cur_position_xy=self.position_xy
+        self.cursor_start_xy=(0,0)
 
-    vect=[]
-    subvect=[]
+        self.vect=[]
+        self.subvect=[]
 
-    ##### Widgets controlling
-    Gwidgets = []
+        ##### Widgets controlling
+        self.Gwidgets = []
 
-    ##### Mechanical
+        ##### Mechanical
