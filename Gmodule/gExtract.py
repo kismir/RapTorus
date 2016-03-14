@@ -49,6 +49,7 @@ def eSTL(path):
     cmass=(x,y,z)
     
     cons=constants()
+    print('constants successfully initialized')
     cons.vect=vect
     cons.cmass_xyz=cmass
     
