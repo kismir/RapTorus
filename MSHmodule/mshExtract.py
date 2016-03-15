@@ -2,6 +2,7 @@ from ElemDescr import *
 from collections import Counter
 import itertools
 from constants import constants
+import time
 
 
 def is_number(s):
@@ -74,28 +75,35 @@ def cross(a, b): # cross vector multiplication
          a[0]*b[1] - a[1]*b[0]]
     return c
 
+def vSubtraction(a, b): # cross vector multiplication
+    c=[a[0] - b[0],
+         a[1] - b[1],
+         a[2]- b[2]]
+    return c
+
 def outerFaces(vertices,elements): # define outer faces
+    
     faces=[]
+    workFaces=[]
+    i=0
     for el in elements:
         for face in el.facesList:
-            faces.append(face)
-    flist=[]
-    faceslen=len(faces)
-    for i in range(faceslen):
-        if len(faces)>0:
-            face=faces[0]
-            faces=faces[1:]
-            strtl=len(faces)
-            allFacePermutations=list(itertools.permutations(face))
-            #print(allFacePermutations)
-            for prmf in allFacePermutations:
-                try:
-                    faces.remove(prmf)
-                except:
-                    pass
-            if strtl==len(faces):
-                flist.append(face)
+                faces.append(face)
+                #workFaces.append(i)
+                workFaces.append(set(face))
+                i=i+1
 
+    ifaces=[]
+    for i,face in enumerate(faces):
+        Lstrt=len(workFaces)
+        workFaces=list(filter(set(face).__ne__, workFaces))
+        if Lstrt-len(workFaces)==1:
+            ifaces.append(i)
+     
+    flist=[]
+    for i in ifaces:
+        flist.append(faces[i])
+   
             ## FLIST -list of (list of vertices numbers of outer faces)
             ## forming vector with normals
     vect=[]
@@ -105,14 +113,16 @@ def outerFaces(vertices,elements): # define outer faces
             nodeObj=findObjectByNum(vertices,nodeN)
             vec=[nodeObj.x,nodeObj.y,nodeObj.z]
             v.append(vec)
-        normal=cross(v[1],v[0])
+        v1=vSubtraction(v[1],v[0])
+        v2=vSubtraction(v[2],v[1])
+        normal=cross(v1,v2)
         sumUP=[normal]
         for i in v:
             sumUP.append(i)
         vect.append(sumUP)
 
     print(len(vect))
-            
+
     return vect        
 
 def mExt(path):
