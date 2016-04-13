@@ -1,6 +1,6 @@
 # RapTorus
 
-    All good things have a name. 
+All good things have a name. 
 The name that defines their essence.
 Time to develop RapTorus - FE workspace.
 
