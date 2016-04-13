@@ -1,8 +1,8 @@
 # RapTorus
 
-All good things have a name. 
- The name that defines their essence.
- Time to develop RapTorus - FE workspace.
+    All good things have a name. 
+The name that defines their essence.
+Time to develop RapTorus - FE workspace.
 
 Overcoming this pathos lets begin with structurizing our work.
 
