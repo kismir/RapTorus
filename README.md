@@ -1,9 +1,9 @@
 # RapTorus
-
+"""
 All good things have a name. 
 The name that defines their essence.
 Time to develop RapTorus - FE workspace.
-
+"""
 Overcoming this pathos lets begin with structurizing our work.
 
 For now lets declare some rules(disputes are welcome) :
