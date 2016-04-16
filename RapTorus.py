@@ -7,6 +7,7 @@ sys.path.append(os.getcwd()+'/Gmodule')
 sys.path.append(os.getcwd()+'/MSHmodule')
 import gExtract
 import mshExtract
+import pdbReader
 from MainFrame import MFrame
 from constants import constants
 
