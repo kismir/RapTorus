@@ -27,7 +27,14 @@ cons1=mshExtract.mExt(path)
 cons1.Gwidgets.append('mesh')
 print('stl surface elements: ',len(cons1.vect))
 
-c=[cons,cons1]
+## open mesh file
+print('exctracting geometry from file')
+path='D:/test.pdb'
+cons2=pdbReader.mExt(path)
+cons2.Gwidgets.append('mesh')
+print('stl surface elements: ',len(cons2.vect))
+
+c=[cons,cons1,cons2]
 ## Initialize Main Frame with specific constants
 MFrame(c)
 
